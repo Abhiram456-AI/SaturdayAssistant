@@ -4,6 +4,7 @@ import subprocess
 import webbrowser
 import datetime
 import requests
+import re
 
 # Initialize TTS engine
 engine = pyttsx3.init()
@@ -13,14 +14,14 @@ engine.setProperty('volume', 0.85)
 
 # YouTube API setup
 from googleapiclient.discovery import build
-#API_KEY = '' # Add your API key before execution
+API_KEY = '' # Use your own API key
 youtube = build("youtube", "v3", developerKey=API_KEY)
 
 # OpenWeatherMap API setup
-#WEATHER_API_KEY = '' # Add your API key before execution
+WEATHER_API_KEY = '' # Use your own API key
 
 # Hugging Face Mistral API setup
-#HF_TOKEN = ""  # Add your API key before execution
+HF_TOKEN = "" # use your won HF token
 HF_API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
 
 initial_prompt_done = False
@@ -117,7 +118,6 @@ def get_weather(city):
         return "Sorry, I couldn't fetch the weather information right now."
 
 def ask_mistral(prompt):
-    api_url = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
     headers = {
         "Authorization": f"Bearer {HF_TOKEN}",
         "Content-Type": "application/json"
@@ -130,7 +130,6 @@ def ask_mistral(prompt):
         "Q: What is Formula 1?\nA:"
     )
 
-    # Dynamically insert the user's question
     user_question = prompt.strip().capitalize().rstrip("?")
     full_prompt = few_shot_prompt.replace("What is Formula 1?", f"What is {user_question}?")
 
@@ -146,7 +145,7 @@ def ask_mistral(prompt):
     }
 
     try:
-        response = requests.post(api_url, headers=headers, json=data)
+        response = requests.post(HF_API_URL, headers=headers, json=data)
         response.raise_for_status()
         output = response.json()
 
@@ -158,14 +157,10 @@ def ask_mistral(prompt):
     except requests.exceptions.RequestException as e:
         print("Error:", e)
         return "Sorry, I couldn't reach the AI service."
-    
+
 def process_command(command):
     if "hello" in command:
         speak("Hello! How can I assist you today?")
-    elif "time" in command:
-        speak(f"The current time is {datetime.datetime.now().strftime('%I:%M %p')}")
-    elif "date" in command:
-        speak(f"Today's date is {datetime.datetime.now().strftime('%B %d, %Y')}")
     elif "play" in command and "youtube" in command:
         if "from youtube" in command:
             song_name = command.split("play", 1)[-1].split("from youtube")[0].strip()
@@ -185,11 +180,16 @@ def process_command(command):
             city = listen()
         weather_info = get_weather(city)
         speak(weather_info)
+    elif re.search(r'\btime\b', command):
+        current_time = datetime.datetime.now().strftime('%H:%M %p')
+        speak(f"The current time is {current_time}")
+    elif re.search(r'\bdate\b', command) or "what is the date" in command:
+        current_date = datetime.datetime.now().strftime('%B %d, %Y')
+        speak(f"Today's date is {current_date}")
     elif "exit" in command or "quit" in command:
         speak("Goodbye!")
         exit()
     else:
-        # Fallback: treat anything else as a prompt for Mistral AI
         response = ask_mistral(command)
         print("Saturday:", response)
         speak(response)

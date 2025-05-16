@@ -1,8 +1,7 @@
 # Saturday-AI Voice Assistant
 
 Saturday is a Python-powered AI voice assistant that listens to your voice or typed commands and helps you with everyday tasks — from playing YouTube videos and checking the weather to answering questions with short, clear responses using the Mistral AI model.
-
-⸻
+_________________________________________________________________________________________________________________________________________________________________________________________
 
 Features
 	•	Voice & Text Input: Interact by speaking or typing commands.
@@ -12,7 +11,7 @@ Features
 	•	AI Answers: Ask questions and receive concise, relevant definitions and explanations powered by the Mistral AI model.
 	•	Text-to-Speech: Hear responses spoken aloud for a smooth user experience.
 
-⸻
+_________________________________________________________________________________________________________________________________________________________________________________________
 
 Getting Started
 
@@ -21,8 +20,8 @@ Prerequisites
 	•	APIs:
 	•	YouTube Data API v3
 	•	OpenWeatherMap API
-	•	Hugging Face API Token
- 
+	•	Hugging Face API Token ________________________________________________________________________________________________________________________________________________________________________________________
+
 1. Clone the repo:
 git clone https://github.com/yourusername/saturday.git
 cd saturday
@@ -40,6 +39,7 @@ pip install -r requirements.txt
 
 5. Run the assistant:
 python Saturday.py
+_________________________________________________________________________________________________________________________________________________________________________________________
 
 You will be prompted to type or speak your command.
 	•	Try commands like:

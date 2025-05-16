@@ -13,14 +13,14 @@ engine.setProperty('volume', 0.85)
 
 # YouTube API setup
 from googleapiclient.discovery import build
-#API_KEY = '' #add your API key before execution
+#API_KEY = '' # Add your API key before execution
 youtube = build("youtube", "v3", developerKey=API_KEY)
 
 # OpenWeatherMap API setup
-#WEATHER_API_KEY = '' #add your API key before execution
+#WEATHER_API_KEY = '' # Add your API key before execution
 
 # Hugging Face Mistral API setup
-#HF_TOKEN = "" #add your API key before execution
+#HF_TOKEN = ""  # Add your API key before execution
 HF_API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
 
 initial_prompt_done = False

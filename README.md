@@ -1,4 +1,4 @@
-### Saturday-AI Voice Assistant
+# Saturday-AI Voice Assistant
 
 Saturday is a Python-powered AI voice assistant that listens to your voice or typed commands and helps you with everyday tasks — from playing YouTube videos and checking the weather to answering questions with short, clear responses using the Mistral AI model.
 

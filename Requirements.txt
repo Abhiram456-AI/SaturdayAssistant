@@ -1,0 +1,15 @@
+Before using Saturday in your computer,  please install the below dependencies before execution.
+pyttsx3
+SpeechRecognition
+pyaudio
+openai
+requests
+wikipedia
+python-dotenv
+platformdirs
+huggingface_hub
+
+Notes:
+	•	pyaudio is needed for microphone input. If you run into installation issues on macOS or Windows, you might need to install it using system-specific commands.
+	•	huggingface_hub is used to connect with the Mistral model via the Hugging Face API.
+	•	python-dotenv is optional but recommended if you want to store API keys in a .env file.

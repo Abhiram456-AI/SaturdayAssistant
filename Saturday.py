@@ -13,14 +13,14 @@ engine.setProperty('volume', 0.85)
 
 # YouTube API setup
 from googleapiclient.discovery import build
-API_KEY = 'AIzaSyCuaWtIfC94AVI3k1tgIISrVq3WnX0hshA'
+#API_KEY = 'AIzaSyCuaWtIfC94AVI3k1tgIISrVq3WnX0hshA'
 youtube = build("youtube", "v3", developerKey=API_KEY)
 
 # OpenWeatherMap API setup
-WEATHER_API_KEY = '51e5f7b411ea3c15cd7f73234e8361b4'
+#WEATHER_API_KEY = '51e5f7b411ea3c15cd7f73234e8361b4'
 
 # Hugging Face Mistral API setup
-HF_TOKEN = "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"
+#HF_TOKEN = "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"
 HF_API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
 
 initial_prompt_done = False
